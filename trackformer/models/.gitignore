@@ -1,2 +1,11 @@
 *
 !.gitignore
+crowdhuman_deformable_multi_frame
+mot17_crowdhuman_deformable_multi_frame
+mot17_deformable_multi_frame
+mot20_crowdhuman_deformable_multi_frame
+mots20_train_masks
+./detr-r50-panoptic-00ce5173.pth
+./r50_deformable_detr-checkpoint.pth
+./r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint.pth
+./r50_deformable_detr_plus_iterative_bbox_refinement-checkpoint_hidden_dim_288.pth
