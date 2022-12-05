@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/trackformer/py-lapsolver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/trackformer/py-lapsolver/pybind11" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/trackformer/py-lapsolver/pybind11/tools/clang" vcs="Git" />
   </component>
 </project>
