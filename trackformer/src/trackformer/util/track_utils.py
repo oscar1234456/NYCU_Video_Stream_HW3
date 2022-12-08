@@ -160,7 +160,7 @@ def plot_sequence(tracks, data_loader, output_dir, write_images, generate_attent
     for frame_id, frame_data  in enumerate(tqdm.tqdm(data_loader)):
         img_path = frame_data['img_path'][0]
         img = cv2.imread(img_path)[:, :, (2, 1, 0)]
-        cv2.imshow('frame', img)
+        # cv2.imshow('frame', img)
         height, width, _ = img.shape
 
         fig = plt.figure()

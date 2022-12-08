@@ -32,6 +32,7 @@ def main(seed, dataset_name, obj_detect_checkpoint_file, tracker_cfg,
          data_root_dir, generate_attention_maps, frame_range,
          _config, _log, _run, obj_detector_model=None):
     if write_images:
+        # 要有write_image就要有指定output_dir
         assert output_dir is not None
 
     # obj_detector_model is only provided when run as evaluation during
@@ -107,6 +108,14 @@ def main(seed, dataset_name, obj_detect_checkpoint_file, tracker_cfg,
     mot_accums = []
     dataset = TrackDatasetFactory(
         dataset_name, root_dir=data_root_dir, img_transform=img_transform)
+    # 製作 Dataset
+    print(f"dataset:{dataset._data}")
+
+    for s in dataset:
+        print("im in loop")
+        print(f"s:{type(s)}")
+
+
 
     for seq in dataset:
         tracker.reset()
@@ -128,12 +137,15 @@ def main(seed, dataset_name, obj_detect_checkpoint_file, tracker_cfg,
             start = time.time()
 
             for frame_id, frame_data in enumerate(tqdm.tqdm(seq_loader, file=sys.stdout)):
+                # print(f"frame_data:{frame_data}")
+                # print(f"frame shape: {frame_data.shape}")
                 with torch.no_grad():
                     tracker.step(frame_data)
 
             results = tracker.get_results()
+            print(f"results:{results}")
 
-            time_total += time.time() - start
+            # time_total += time.time() - start
 
             _log.info(f"NUM TRACKS: {len(results)} ReIDs: {tracker.num_reids}")
             _log.info(f"RUNTIME: {time.time() - start :.2f} s")
@@ -191,15 +203,15 @@ def main(seed, dataset_name, obj_detect_checkpoint_file, tracker_cfg,
                   f"{time_total:.2f} s for {num_frames} frames "
                   f"({num_frames / time_total:.2f} Hz)")
 
-    if obj_detector_model is None:
-        _log.info(f"EVAL:")
+    # if obj_detector_model is None:
+    #     _log.info(f"EVAL:")
+    #
+    #     summary, str_summary = evaluate_mot_accums(
+    #         mot_accums,
+    #         [str(s) for s in dataset if not s.no_gt])
+    #
+    #     _log.info(f'\n{str_summary}')
+    #
+    #     return summary
 
-        summary, str_summary = evaluate_mot_accums(
-            mot_accums,
-            [str(s) for s in dataset if not s.no_gt])
-
-        _log.info(f'\n{str_summary}')
-
-        return summary
-
-    return mot_accums
+    # return mot_accums

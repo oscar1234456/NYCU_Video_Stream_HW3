@@ -1,6 +1,7 @@
 output_dir: null
 verbose: false
 seed: 666
+camera: True
 
 obj_detect_checkpoint_file: models/mot17_crowdhuman_deformable_multi_frame/checkpoint_epoch_40.pth
 

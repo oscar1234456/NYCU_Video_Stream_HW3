@@ -22,3 +22,6 @@ while success:
 
 videoCapture.release()
 cv2.destroyAllWindows()
+
+cmap = {0: "red_color", 1: "pink_color", 2: "blue_color", 3: "orange_color", 4: "green_color", 5: "gray_color",
+                6: "brown_color", 7: "Yellow_color"}
